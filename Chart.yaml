@@ -1,0 +1,4 @@
+apiVersion: v2
+name: manav-helm-demo
+description: Helm testing for FE, BE, and Ingress
+version: 0.1.0
