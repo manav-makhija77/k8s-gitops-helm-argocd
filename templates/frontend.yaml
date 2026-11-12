@@ -24,6 +24,8 @@ kind: Service
 metadata:
   name: fe-svc
   namespace: {{ .Values.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   selector:
     app: fe
