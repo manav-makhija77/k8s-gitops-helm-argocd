@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: be-deploy
   namespace: {{ .Values.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: {{ .Values.backend.replicaCount }}
   selector:
@@ -27,6 +29,8 @@ kind: Service
 metadata:
   name: be-svc
   namespace: {{ .Values.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   selector:
     app: be

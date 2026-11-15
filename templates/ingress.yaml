@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: manav-gateway-api
   namespace: {{ .Values.namespace }}
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   rules:
   - host: {{ .Values.ingress.host }}
