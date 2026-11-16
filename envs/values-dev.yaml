@@ -1,0 +1,7 @@
+namespace: manav-dev
+frontend:
+  replicaCount: 1
+backend:
+  replicaCount: 1
+ingress:
+  host: "dev.manav.local"

@@ -1,0 +1,7 @@
+namespace: manav-prod
+frontend:
+  replicaCount: 3
+backend:
+  replicaCount: 2
+ingress:
+  host: "prod.manav.local"

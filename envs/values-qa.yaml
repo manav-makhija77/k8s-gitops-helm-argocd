@@ -1,0 +1,7 @@
+namespace: manav-qa
+frontend:
+  replicaCount: 2
+backend:
+  replicaCount: 1
+ingress:
+  host: "qa.manav.local"
