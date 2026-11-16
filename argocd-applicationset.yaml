@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: manav-multi-env
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - env: dev
+        namespace: manav-dev
+      - env: qa
+        namespace: manav-qa
+      - env: prod
+        namespace: manav-prod
+  template:
+    metadata:
+      name: '{{env}}-manav-app'
+    spec:
+      project: manav-project
+      source:
+        repoURL: 'https://github.com/manav-makhija77/k8s-gitops-helm-argocd.git'
+        targetRevision: main
+        path: .
+        helm:
+          valueFiles:
+          - values.yaml
+          - envs/values-{{env}}.yaml
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        - ApplyOutOfSyncOnly=true

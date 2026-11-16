@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: manav-project
+  namespace: argocd
+spec:
+  description: "Enterprise guardrails for Manav App across Dev, QA, and Prod"
+  sourceRepos:
+  - 'https://github.com/manav-makhija77/*'
+  destinations:
+  - namespace: manav
+    server: 'https://kubernetes.default.svc'
+  - namespace: manav-dev
+    server: 'https://kubernetes.default.svc'
+  - namespace: manav-qa
+    server: 'https://kubernetes.default.svc'
+  - namespace: manav-prod
+    server: 'https://kubernetes.default.svc'
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  namespaceResourceWhitelist:
+  - group: ''
+    kind: Service
+  - group: ''
+    kind: ConfigMap
+  - group: ''
+    kind: Secret
+  - group: ''
+    kind: Pod
+  - group: apps
+    kind: Deployment
+  - group: apps
+    kind: ReplicaSet
+  - group: networking.k8s.io
+    kind: Ingress
+  - group: batch
+    kind: Job
