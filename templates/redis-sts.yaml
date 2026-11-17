@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: manual-redis-sts
+  namespace: {{ .Values.namespace }}
+spec:
+  serviceName: "redis"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: manual-redis
+  template:
+    metadata:
+      labels:
+        app: manual-redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7-alpine
